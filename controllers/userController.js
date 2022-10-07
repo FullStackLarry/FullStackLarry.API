@@ -38,7 +38,7 @@ router.get("/:userId", verifyToken, function (req, res) {
   });
 });
 
-router.get("/avatar-list", verifyToken, function (req, res) {
+router.get("/avatars/list", verifyToken, function (req, res) {
   res.status(httpStatus.OK).send(avatarList);
 });
 
