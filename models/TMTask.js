@@ -6,10 +6,6 @@ const TMTaskSchema = new mongoose.Schema({
     required: true,
     ref: "User",
   },
-  ownerName: {
-    type: String,
-    required: true,
-  },
   assignedTo: {
     type: mongoose.SchemaTypes.ObjectId,
     ref: "User",

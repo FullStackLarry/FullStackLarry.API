@@ -20,6 +20,24 @@ router.get("/", verifyToken, function (req, res) {
   });
 });
 
+router.get("/:userId", verifyToken, function (req, res) {
+  const { userId } = req.params;
+  if (!userId) {
+    const message = "Field not supplied: userId";
+    return res.status(httpStatus.BAD_REQUEST).send({ error: message });
+  }
+  User.findById(userId, userSelection, function (error, user) {
+    if (error) {
+      const message = `Server error: ${error.message}`;
+      return res
+        .status(httpStatus.INTERNAL_SERVER_ERROR)
+        .send({ error: message });
+    } else {
+      res.status(httpStatus.OK).json(user);
+    }
+  });
+});
+
 router.get("/avatar-list", verifyToken, function (req, res) {
   res.status(httpStatus.OK).send(avatarList);
 });

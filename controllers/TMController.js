@@ -112,7 +112,6 @@ router.get("/tasks/:assigneeId", verifyToken, function (req, res) {
 
 router.post("/tasks", verifyToken, function (req, res) {
   const {
-    ownerName,
     assignedTo,
     name,
     description,
@@ -121,9 +120,8 @@ router.post("/tasks", verifyToken, function (req, res) {
     startedDate,
     completedDate,
   } = req.body;
-  if (!ownerName || !assignedTo || !name || !status) {
+  if (!assignedTo || !name || !status) {
     let message = "Field(s) not supplied: ";
-    if (!ownerName) message += "ownerName ";
     if (!assignedTo) message += "assignedTo ";
     if (!name) message += "name ";
     if (!status) message += "status";
@@ -133,7 +131,6 @@ router.post("/tasks", verifyToken, function (req, res) {
   TMTask.create(
     {
       owner: req.userId,
-      ownerName: ownerName,
       assignedTo: assignedTo,
       name: name,
       description: description,
@@ -182,7 +179,6 @@ router.post("/tasks", verifyToken, function (req, res) {
 
 router.put("/tasks", verifyToken, function (req, res) {
   const {
-    ownerName,
     taskId,
     assignedTo,
     name,
@@ -192,9 +188,8 @@ router.put("/tasks", verifyToken, function (req, res) {
     startedDate,
     completedDate,
   } = req.body;
-  if (!ownerName || !taskId || !assignedTo || !name || !status) {
+  if (!taskId || !assignedTo || !name || !status) {
     let message = "Field(s) not supplied: ";
-    if (!ownerName) message += "ownerName ";
     if (!taskId) message += "taskId ";
     if (!assignedTo) message += "assignedTo ";
     if (!name) message += "name ";
@@ -205,7 +200,6 @@ router.put("/tasks", verifyToken, function (req, res) {
     taskId,
     {
       ownerId: req.userId,
-      ownerName: ownerName,
       assignedTo: assignedTo,
       name: name,
       description: description,

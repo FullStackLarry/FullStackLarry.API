@@ -137,14 +137,31 @@ authorization: Bearer \<Authorization Token\>
 
 #### Success Status code(s): 200<br />
 
+{ user info }<br />
+
+#### Failure Status code(s): 500<br />
+
 {
-"email": "email",
-"firstName": "first name",
-"lastName": "last name",
-"avatarUrl": "avatar url",
-"assignees": [assignee list],
-"tasks": [task list]
+"error": "error message"
 }<br />
+
+## Get User Info By Id
+
+## GET /v1/users/:userId<br />
+
+### Request Headers:<br />
+
+authorization: Bearer \<Authorization Token\>
+
+### Request Body:<br />
+
+\<No Content\><br />
+
+### Response Body:<br />
+
+#### Success Status code(s): 200<br />
+
+{ user info }<br />
 
 #### Failure Status code(s): 500<br />
 
@@ -278,7 +295,6 @@ authorization: Bearer \<Authorization Token\>
 ### Request Body:<br />
 
 {
-"ownerName": "owner name",
 "assignedTo": "user id",
 "name": "task name",
 "description": "task description"
@@ -311,7 +327,6 @@ authorization: Bearer \<Authorization Token\>
 ### Request Body:<br />
 
 {
-"ownerName": "owner name",
 "assignedTo": "user id",
 "name": "task name",
 "description": "task description"
