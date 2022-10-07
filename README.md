@@ -101,7 +101,7 @@
 
 ## Get Avatar URL List
 
-## GET /v1/users/avatar-list<br />
+## GET /v1/users/avatars/list<br />
 
 ### Request Headers:<br />
 
