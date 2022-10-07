@@ -16,6 +16,10 @@ const TMTaskNoteSchema = new mongoose.Schema({
     maxLength: 200,
     required: true,
   },
+  enteredDate: {
+    type: String,
+    required: true,
+  },
   createdDate: {
     type: Date,
     immutable: true,

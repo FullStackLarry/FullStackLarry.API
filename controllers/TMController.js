@@ -238,10 +238,11 @@ router.get("/tasknotes/:taskId", verifyToken, function (req, res) {
 });
 
 router.post("/tasknotes", verifyToken, function (req, res) {
-  const { taskId, note } = req.body;
-  if (!taskId || !note) {
+  const { taskId, enteredDate, note } = req.body;
+  if (!taskId || !enteredDate || !note) {
     let message = "Field(s) not supplied: ";
     if (!taskId) message += "taskId ";
+    if (!enteredDate) message += "enteredDate ";
     if (!note) message += "note";
     return res.status(httpStatus.BAD_REQUEST).send({ error: message });
   }
@@ -256,6 +257,7 @@ router.post("/tasknotes", verifyToken, function (req, res) {
       {
         task: taskId,
         owner: req.userId,
+        enteredDate: enteredDate,
         note: note,
       },
       function (error, taskNote) {
@@ -274,16 +276,18 @@ router.post("/tasknotes", verifyToken, function (req, res) {
 });
 
 router.put("/tasknotes", verifyToken, function (req, res) {
-  const { taskNoteId, note } = req.body;
-  if (!taskNoteId || !note) {
+  const { taskNoteId, enteredDate, note } = req.body;
+  if (!taskNoteId || !enteredDate || !note) {
     let message = "Field(s) not supplied: ";
     if (!taskNoteId) message += "taskNoteId ";
+    if (!enteredDate) message += "enteredDate ";
     if (!note) message += "note";
     return res.status(httpStatus.BAD_REQUEST).send({ error: message });
   }
   TMTaskNote.findByIdAndUpdate(
     taskNoteId,
     {
+      enteredDate: enteredDate,
       note: note,
     },
     function (error, taskNote) {
