@@ -28,13 +28,13 @@ const TMTaskSchema = new mongoose.Schema({
     required: true,
   },
   assignedDate: {
-    type: Date,
+    type: String,
   },
   startedDate: {
-    type: Date,
+    type: String,
   },
   completedDate: {
-    type: Date,
+    type: String,
   },
   notes: {
     type: [mongoose.SchemaTypes.ObjectId],
