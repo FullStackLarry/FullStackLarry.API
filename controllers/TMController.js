@@ -21,6 +21,7 @@ router.get("/assignees", verifyToken, function (req, res) {
       }
       let assignees = null;
       if (userAssignees) assignees = userAssignees.assignees;
+      if (!assignees) return res.status(httpStatus.NO_CONTENT).send();
       return res.status(httpStatus.OK).send(assignees);
     }
   ).populate("assignees", userSelection);
@@ -106,6 +107,7 @@ router.get("/tasks/:assigneeId", verifyToken, function (req, res) {
     }
     let tasks = null;
     if (userTasks) tasks = userTasks.tasks;
+    if (!tasks) return res.status(httpStatus.NO_CONTENT).send();
     return res.status(httpStatus.OK).send(tasks);
   }).populate("tasks", taskSelection);
 });

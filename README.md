@@ -137,7 +137,13 @@ authorization: Bearer \<Authorization Token\>
 
 #### Success Status code(s): 200<br />
 
-{ user info }<br />
+{
+"\_id": "id",
+"email": "email",
+"firstName": "first name",
+"lastName": "last name",
+"avatarUrl": "avatar url"
+}<br />
 
 #### Failure Status code(s): 500<br />
 
@@ -161,7 +167,13 @@ authorization: Bearer \<Authorization Token\>
 
 #### Success Status code(s): 200<br />
 
-{ user info }<br />
+{
+"\_id": "id",
+"email": "email",
+"firstName": "first name",
+"lastName": "last name",
+"avatarUrl": "avatar url"
+}<br />
 
 #### Failure Status code(s): 500<br />
 
