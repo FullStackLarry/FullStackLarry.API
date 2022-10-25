@@ -339,6 +339,7 @@ authorization: Bearer \<Authorization Token\>
 ### Request Body:<br />
 
 {
+"\_id": "task id",
 "assignedTo": "user id",
 "name": "task name",
 "description": "task description"
@@ -396,7 +397,8 @@ authorization: Bearer \<Authorization Token\>
 
 {
 "taskId": "task id",
-"note": "task note"
+"note": "task note",
+"enteredDate": "entered date"
 }<br />
 
 ### Response Body:<br />
@@ -422,8 +424,10 @@ authorization: Bearer \<Authorization Token\>
 ### Request Body:<br />
 
 {
+"\_id": "task note id",
 "taskId": "task id",
-"note": "task note"
+"note": "task note",
+"enteredDate": "entered date"
 }<br />
 
 ### Response Body:<br />
