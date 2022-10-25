@@ -117,8 +117,8 @@ router.post("/tasks", verifyToken, function (req, res) {
     assignedTo,
     name,
     description,
-    assignedDate,
     status,
+    assignedDate,
     startedDate,
     completedDate,
   } = req.body;
@@ -181,7 +181,7 @@ router.post("/tasks", verifyToken, function (req, res) {
 
 router.put("/tasks", verifyToken, function (req, res) {
   const {
-    taskId,
+    _id,
     assignedTo,
     name,
     description,
@@ -190,16 +190,16 @@ router.put("/tasks", verifyToken, function (req, res) {
     startedDate,
     completedDate,
   } = req.body;
-  if (!taskId || !assignedTo || !name || !status) {
+  if (!_id || !assignedTo || !name || !status) {
     let message = "Field(s) not supplied: ";
-    if (!taskId) message += "taskId ";
+    if (!_id) message += "_id ";
     if (!assignedTo) message += "assignedTo ";
     if (!name) message += "name ";
     if (!status) message += "status ";
     return res.status(httpStatus.BAD_REQUEST).send({ error: message });
   }
   TMTask.findByIdAndUpdate(
-    taskId,
+    _id,
     {
       ownerId: req.userId,
       assignedTo: assignedTo,
@@ -240,15 +240,15 @@ router.get("/tasknotes/:taskId", verifyToken, function (req, res) {
 });
 
 router.post("/tasknotes", verifyToken, function (req, res) {
-  const { taskId, enteredDate, note } = req.body;
-  if (!taskId || !enteredDate || !note) {
+  const { task, enteredDate, note } = req.body;
+  if (!task || !enteredDate || !note) {
     let message = "Field(s) not supplied: ";
-    if (!taskId) message += "taskId ";
+    if (!task) message += "task ";
     if (!enteredDate) message += "enteredDate ";
     if (!note) message += "note";
     return res.status(httpStatus.BAD_REQUEST).send({ error: message });
   }
-  TMTask.findById(taskId, function (error, task) {
+  TMTask.findById(task, function (error, task) {
     if (error) {
       const message = `Server error: ${error.message}`;
       return res
@@ -257,7 +257,7 @@ router.post("/tasknotes", verifyToken, function (req, res) {
     }
     TMTaskNote.create(
       {
-        task: taskId,
+        task: task,
         owner: req.userId,
         enteredDate: enteredDate,
         note: note,
@@ -278,16 +278,16 @@ router.post("/tasknotes", verifyToken, function (req, res) {
 });
 
 router.put("/tasknotes", verifyToken, function (req, res) {
-  const { taskNoteId, enteredDate, note } = req.body;
-  if (!taskNoteId || !enteredDate || !note) {
+  const { _id, enteredDate, note } = req.body;
+  if (!_id || !enteredDate || !note) {
     let message = "Field(s) not supplied: ";
-    if (!taskNoteId) message += "taskNoteId ";
+    if (!_id) message += "_id ";
     if (!enteredDate) message += "enteredDate ";
     if (!note) message += "note";
     return res.status(httpStatus.BAD_REQUEST).send({ error: message });
   }
   TMTaskNote.findByIdAndUpdate(
-    taskNoteId,
+    _id,
     {
       enteredDate: enteredDate,
       note: note,
