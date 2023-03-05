@@ -6,7 +6,7 @@ router.post("/", function (req, res) {
   Log.create(
     {
       // ipAddress: req.ip,
-      ipAddress: req.headers["http-x-forwarded-for"],
+      ipAddress: req.headers,
       userAgent: req.headers["user-agent"],
     },
     function (error, log) {
