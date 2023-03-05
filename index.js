@@ -51,6 +51,9 @@ app.get(globals.API_VER, function (req, res) {
   res.status(httpStatus.OK).send("FSLAPI v1 running");
 });
 
+const logController = require("controllers/logController");
+app.use(`${globals.API_VER}/log`, logController);
+
 const authController = require("controllers/authController");
 app.use(`${globals.API_VER}/auth`, authController);
 
